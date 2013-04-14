@@ -24,18 +24,18 @@ if (!defined('ADMIN_WIDTH'))
 if (e_QUERY == "update")
 {
  
-   $pref['el_pagetitle'] = $_POST['el_pagetitle'];
-   $pref['el_eventtitlefsize'] = $_POST['el_eventtitlefsize'];
-   $pref['el_eventdetfsize'] = $_POST['el_eventdetfsize'];
-   $pref['el_autoaddclass'] = $_POST['el_autoaddclass'];
-   $pref['elmenu_title'] = $_POST['elmenu_title'];
-   $pref['elmenu_height'] = $_POST['elmenu_height'];
-   $pref['elmenu_speed'] = $_POST['elmenu_speed'];
-   $pref['elmenu_mouseoverspeed'] = $_POST['elmenu_mouseoverspeed'];
-   $pref['elmenu_mouseoutspeed'] = $_POST['elmenu_mouseoutspeed'];
-   $pref['elmenu_eventfsize'] = $_POST['elmenu_eventfsize'];
-   $pref['el_event_order'] = $_POST['el_event_order'];
-   $pref['el_addclass'] = $_POST['el_addclass'];
+   $pref['el_pagetitle'] = $tp->toDB($_POST['el_pagetitle']);
+   $pref['el_eventtitlefsize'] = $tp->toDB($_POST['el_eventtitlefsize']);
+   $pref['el_eventdetfsize'] = $tp->toDB($_POST['el_eventdetfsize']);
+   $pref['el_autoaddclass'] = $tp->toDB($_POST['el_autoaddclass']);
+   $pref['elmenu_title'] = $tp->toDB($_POST['elmenu_title']);
+   $pref['elmenu_height'] = $tp->toDB($_POST['elmenu_height']);
+   $pref['elmenu_speed'] = $tp->toDB($_POST['elmenu_speed']);
+   $pref['elmenu_mouseoverspeed'] = $tp->toDB($_POST['elmenu_mouseoverspeed']);
+   $pref['elmenu_mouseoutspeed'] = $tp->toDB($_POST['elmenu_mouseoutspeed']);
+   $pref['elmenu_eventfsize'] = $tp->toDB($_POST['elmenu_eventfsize']);
+   $pref['el_event_order'] = $tp->toDB($_POST['el_event_order']);
+   $pref['el_addclass'] = $tp->toDB($_POST['el_addclass']);
 
 
 

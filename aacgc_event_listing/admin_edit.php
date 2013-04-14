@@ -38,7 +38,7 @@ function headerjs()
 }
 //-----------------------------------------------------------------------------------------------------------+
 if (isset($_POST['update_event'])) {
-        $message = ($sql->db_Update("aacgc_event_listing", "event_name='".$_POST['event_name']."',event_host='".$_POST['event_host']."',event_locatiom='".$_POST['event_locatiom']."',event_cost='".$_POST['event_cost']."',event_date='".$_POST['event_date']."',event_details='".$_POST['event_details']."',event_link='".$_POST['event_link']."',event_linktext='".$_POST['event_linktext']."',event_open='".$_POST['event_open']."' WHERE event_id='".$_POST['id']."' ")) ? "Successful updated" : "Update failed";
+        $message = ($sql->db_Update("aacgc_event_listing", "event_name='".$tp->toDB($_POST['event_name'])."',event_host='".$tp->toDB($_POST['event_host'])."',event_locatiom='".$tp->toDB($_POST['event_locatiom'])."',event_cost='".$tp->toDB($_POST['event_cost'])."',event_date='".$tp->toDB($_POST['event_date'])."',event_details='".$tp->toDB($_POST['event_details'])."',event_link='".$tp->toDB($_POST['event_link'])."',event_linktext='".$tp->toDB($_POST['event_linktext'])."',event_open='".$tp->toDB($_POST['event_open'])."',event_maxmembers='".$tp->toDB($_POST['event_maxmembers'])."' WHERE event_id='".$tp->toDB($_POST['id'])."' ")) ? "Successful updated" : "Update failed";
 }
 
 if (isset($_POST['main_delete'])) {
@@ -67,7 +67,7 @@ if ($action == "") {
         <td style='width:10%' class='forumheader3'>Cost</td>
         <td style='width:10%' class='forumheader3'>Date</td>
         <td style='width:' class='forumheader3'>Details</td>
-        <td style='width:' class='forumheader3'>Open To Users</td>
+        <td style='width:' class='forumheader3'>Open To Users / Max Users</td>
         <td style='width:' class='forumheader3'>Link</td>
         <td style='width:5%' class='forumheader3'>Options</td>
        </tr>";
@@ -82,7 +82,7 @@ if ($action == "") {
         <td style='width:' class='forumheader3'>".$row['event_cost']."</td>
         <td style='width:' class='forumheader3'>".$row['event_date']."</td>
         <td style='width:' class='forumheader3'>".$row['event_details']."</td>
-        <td style='width:' class='forumheader3'>".$row['event_open']."</td>
+        <td style='width:' class='forumheader3'>".$row['event_open']."<br/>--------<br/>".$row['event_maxmembers']."</td>
         <td style='width:' class='forumheader3'>Link Text:".$row['event_linktext']."<br>Link:".$row['event_link']."</td>
         <td style='width:' class='forumheader3'>
         
@@ -184,7 +184,12 @@ $text .= "</td>
                 <option name='event_open' value='No'>No</option>
                 </td>
 	<tr>
-
+        <tr>
+        <td style='width:30%; text-align:right' class='forumheader3'>Maximum Participants:</td>
+        <td style='width:70%' class='forumheader3'>
+            ".$rs -> form_text("event_maxmembers", 100, $row['event_maxmembers'], 500)."
+        </td>
+        </tr>
 
 ";
 

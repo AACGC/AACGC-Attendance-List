@@ -12,7 +12,7 @@
 
 
 $eplug_name = "AACGC Attendance List";
-$eplug_version = "3.1";
+$eplug_version = "3.2";
 $eplug_author = "M@CH!N3";
 $eplug_url = "http://www.aacgc.com";
 $eplug_email = "admin@aacgc.com";
@@ -40,7 +40,7 @@ $eplug_table_names = array("aacgc_event_listing", "aacgc_event_listing_members",
 
 $eplug_tables = array(
 
-"CREATE TABLE ".MPREFIX."aacgc_event_listing(event_id int(11) NOT NULL auto_increment,event_name varchar(50) NOT NULL,event_host text NOT NULL,event_locatiom text NOT NULL,event_cost text NOT NULL,event_date text NOT NULL,event_details text NOT NULL,event_link text NOT NULL,event_linktext text NOT NULL,event_open text NOT NULL,  PRIMARY KEY  (event_id)) ENGINE=MyISAM;",
+"CREATE TABLE ".MPREFIX."aacgc_event_listing(event_id int(11) NOT NULL auto_increment,event_name varchar(50) NOT NULL,event_host text NOT NULL,event_locatiom text NOT NULL,event_cost text NOT NULL,event_date text NOT NULL,event_details text NOT NULL,event_link text NOT NULL,event_linktext text NOT NULL,event_open text NOT NULL,event_maxmembers text NOT NULL,  PRIMARY KEY  (event_id)) ENGINE=MyISAM;",
 
 "CREATE TABLE ".MPREFIX."aacgc_event_listing_members(eventmem_id int(11) NOT NULL auto_increment,event_id int(11) NOT NULL,user_id varchar(11) NOT NULL,user_choice varchar(120) NOT NULL,user_info text NOT NULL, PRIMARY KEY  (eventmem_id)) ENGINE=MyISAM;",
 
@@ -54,10 +54,9 @@ $eplug_done = "Install Complete";
 $eplug_upgrade_done = "Upgrade Complete";
 
 
-$upgrade_table_names = "";
-
-$upgrade_alter_tables =  "";
-
+$upgrade_alter_tables =  $upgrade_alter_tables = array(
+"ALTER TABLE " . MPREFIX . "aacgc_event_listing ADD COLUMN event_maxmembers text NOT NULL AFTER event_open;",
+);
 
 $upgrade_remove_prefs = "";
 $upgrade_add_prefs = "";

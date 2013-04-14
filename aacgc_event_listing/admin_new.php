@@ -33,16 +33,16 @@ $offset = +0;
 $time = time()  + ($offset * 60 * 60);
 //-----------------------------------------------------------------------------------------------------------+
 if ($_POST['add_event'] == '1') {
-$neweventname = $_POST['event_name'];
-$neweventhost = $_POST['event_host'];
-$neweventloc = $_POST['event_location'];
-$neweventcost = $_POST['event_cost'];
-$neweventdate = $_POST['event_date'];
-$neweventdetail = $_POST['event_details'];
-$neweventlink = $_POST['event_link'];
-$neweventlinktext = $_POST['event_linktext'];
-$neweventopen = $_POST['event_open'];
-
+$neweventname = $tp->toDB($_POST['event_name']);
+$neweventhost = $tp->toDB($_POST['event_host']);
+$neweventloc = $tp->toDB($_POST['event_location']);
+$neweventcost = $tp->toDB($_POST['event_cost']);
+$neweventdate = $tp->toDB($_POST['event_date']);
+$neweventdetail = $tp->toDB($_POST['event_details']);
+$neweventlink = $tp->toDB($_POST['event_link']);
+$neweventlinktext = $tp->toDB($_POST['event_linktext']);
+$neweventopen = $tp->toDB($_POST['event_open']);
+$newmaxmembers = $tp->toDB($_POST['event_maxmembers']);
 $reason = "";
 $newok = "";
 
@@ -63,17 +63,14 @@ If ($newok == "0"){
 	$ns->tablerender("", $newtext);}
 
 If ($newok == "1"){
-$sql->db_Insert("aacgc_event_listing", "NULL, '".$neweventname."', '".$neweventhost."', '".$neweventloc."', '".$neweventcost."', '".$neweventdate."', '".$neweventdetail."', '".$neweventlink."', '".$neweventlinktext."', '".$neweventopen."'") or die(mysql_error());
+$sql->db_Insert("aacgc_event_listing", "NULL, '".$neweventname."', '".$neweventhost."', '".$neweventloc."', '".$neweventcost."', '".$neweventdate."', '".$neweventdetail."', '".$neweventlink."', '".$neweventlinktext."', '".$neweventopen."', '".$newmaxmembers."'") or die(mysql_error());
 $ns->tablerender("", "<center><b>Event Added</b></center>");
 }}
 
 //-----------------------------------------------------------------------------------------------------------+
 $text = "
 <form method='POST' action='admin_new.php'>
-<br>
-<center>
-<div style='width:100%'>
-<table style='width:80%' class='fborder' cellspacing='0' cellpadding='0'>";
+<table style='width:100%' class='fborder' cellspacing='0' cellpadding='0'>";
 
 $text .= "
         <tr>
@@ -140,7 +137,7 @@ $text .="</tr>
         </td>
         </tr>
 	<tr>
-		<td style='width:30%' class='forumheader3'>Allow User Submissions:</td>
+		<td style='width:30%; text-align:right' class='forumheader3'>Allow User Join Submissions:</td>
                 <td style='width:' class=''>
                 <select name='event_open' size='1' class='tbox' style='width:50%'>
                 <option name='event_open' value='".$row['event_open']."'>".$row['event_open']."</option>
@@ -148,6 +145,12 @@ $text .="</tr>
                 <option name='event_open' value='No'>No</option>
                 </td>
 	<tr>
+        <tr>
+        <td style='width:40%; text-align:right' class='forumheader3'>Maximum Participants:</td>
+        <td style='width:60%' class='forumheader3'>
+        <input class='tbox' type='text' name='event_maxmembers' size='50'>
+        </td>
+    </tr>	
 ";
 
 $text .= "</div>
@@ -161,8 +164,6 @@ $text .= "</div>
 		</td>
         </tr>
 </table>
-</div>
-<br>
 </form>";
 	      $ns -> tablerender("AACGC Event Listing (Add Event)", $text);
 	      require_once(e_ADMIN."footer.php");

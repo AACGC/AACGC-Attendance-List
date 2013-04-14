@@ -53,13 +53,8 @@ $text .= "<table style='width:100%' class='indent'><br>";
 
 
 $text .= "<tr>   
-          <td style='width:30%' class='indent' rowspan=4><center><font size='3'>".$row['event_name']."</font></center></td>
+          <td style='width:30%; text-align:center' class='indent' rowspan='4'><a href='".e_PLUGIN."aacgc_event_listing/Event_Details.php?det.".$row['event_id']."'><font size='3'>".$row['event_name']."</font></a></td>
           <td style='width:40%' class='indent'>Location: ".$row['event_locatiom']."</td>
-          <td style='width:30%' class='indent' rowspan=4><center>
-          [<a href='".e_PLUGIN."aacgc_event_listing/Event_Details.php?det.".$row['event_id']."'> More Details </a>]
-          <br><br>
-          [<a href='".e_PLUGIN."aacgc_event_listing/Join_Event.php?det.".$row['event_id']."'> Join Event </a>]
-          </td>
           </tr>";
 
 $text .= "".$cost."";

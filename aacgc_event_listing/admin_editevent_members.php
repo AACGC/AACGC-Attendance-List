@@ -29,7 +29,7 @@ if (e_QUERY) {
 }
 //-----------------------------------------------------------------------------------------------------------+
 if (isset($_POST['update_user'])) {
-        $message = ($sql->db_Update("aacgc_event_listing_members", "event_id='".$_POST['event_id']."',user_id='".$_POST['user_id']."',user_choice='".$_POST['user_choice']."',user_info='".$_POST['user_info']."' WHERE eventmem_id='".$_POST['id']."' ")) ? "Successful updated" : "Update failed";
+        $message = ($sql->db_Update("aacgc_event_listing_members", "event_id='".$tp->toDB($_POST['event_id'])."',user_id='".$tp->toDB($_POST['user_id'])."',user_choice='".$tp->toDB($_POST['user_choice'])."',user_info='".$tp->toDB($_POST['user_info'])."' WHERE eventmem_id='".$tp->toDB($_POST['id'])."' ")) ? "Successful updated" : "Update failed";
 }
 
 if (isset($_POST['main_delete'])) {

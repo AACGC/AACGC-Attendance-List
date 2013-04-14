@@ -26,10 +26,10 @@ $fl = new e_file;
 
 if ($_POST['add_user'] == '1') {
 
-$newevent = $_POST['event_id'];
-$newname = $_POST['user_id'];
-$newchoice = $_POST['user_choice'];
-$newreason = $_POST['user_info'];
+$newevent = $tp->toDB($_POST['event_id']);
+$newname = $tp->toDB($_POST['user_id']);
+$newchoice = $tp->toDB($_POST['user_choice']);
+$newreason = $tp->toDB($_POST['user_info']);
 $sql->db_Insert("aacgc_event_listing_members", "NULL, '".$newevent."', '".$newname."', '".$newchoice."', '".$newreason."'") or die(mysql_error());
 
 

@@ -57,10 +57,10 @@ if (USER){
 
 if ( check_class($pref['el_autoaddclass']) ){
 if ($_POST['add_request'] == '1') {
-$newevent = $_POST['event_id'];
-$newname = $_POST['user_id'];
-$newchoice = $_POST['user_choice'];
-$newreason = $_POST['user_info'];
+$newevent = $tp->toDB($_POST['event_id']);
+$newname = $tp->toDB($_POST['user_id']);
+$newchoice = $tp->toDB($_POST['user_choice']);
+$newreason = $tp->toDB($_POST['user_info']);
 $sql->db_Insert("aacgc_event_listing_members", "NULL, '".$newevent."', '".$newname."', '".$newchoice."', '".$newreason."'") or die(mysql_error());
 $ns->tablerender("", "<center><b>Request Auto Approved.</b><br>[<a href='".e_PLUGIN."aacgc_event_listing/Events.php'> Return To Categories </a>]</center>");
 require_once(FOOTERF);}}
@@ -68,10 +68,10 @@ require_once(FOOTERF);}}
 else
 
 {if ($_POST['add_request'] == '1') {
-$newevent = $_POST['event_id'];
-$newname = $_POST['user_id'];
-$newchoice = $_POST['user_choice'];
-$newreason = $_POST['user_info'];
+$newevent = $tp->toDB($_POST['event_id']);
+$newname = $tp->toDB($_POST['user_id']);
+$newchoice = $tp->toDB($_POST['user_choice']);
+$newreason = $tp->toDB($_POST['user_info']);
 $sql->db_Insert("aacgc_event_listing_request", "NULL, '".$newevent."', '".$newname."', '".$newchoice."', '".$newreason."'") or die(mysql_error());
 $ns->tablerender("", "<center><b>Request Sent, Waiting For Admin Approval.</b><br>[<a href='".e_PLUGIN."aacgc_event_listing/Events.php'> Return To Categories </a>]</center>");
 require_once(FOOTERF);}}
@@ -84,12 +84,12 @@ $text .= "<br><br><center>
 
 <form method='POST' action='Join_Event.php'>
 <table style='' class='indent'><tr>
-<td colspan=2>
+<td colspan='2'>
 <input type='hidden' name='user_id' value='".USERID."'>
 </td>
 </tr>
 <tr>
-<td colspan=2>
+<td colspan='2'>
 <input type='hidden' name='event_id' value='".$row['event_id']."'>
 </td>
 </tr>";

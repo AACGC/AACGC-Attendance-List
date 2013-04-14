@@ -27,12 +27,15 @@ if (e_QUERY) {
 
 //------------------------------------------------------------------------------------------------------------
 
+$text .= "<a href='".e_PLUGIN."aacgc_event_listing/Events.php'><img src='".e_PLUGIN."aacgc_event_listing/images/back.png' /></a><br>";
+
 $text .= "<table style='width:100%' class='' cellspacing='' cellpadding=''>";
 
 
 $sql->db_Select("aacgc_event_listing", "*", "event_id = '".intval($sub_action)."'");
 $row = $sql->db_Fetch();
 
+$maxmembers = $row['event_maxmembers'];
 
 if ($row['event_link'] == "")
 {$link = "";}
@@ -108,7 +111,6 @@ $text .= "</table>";
         $user = $row2['user_name'];
         $info = $row3['user_info'];
         $userid = $row3['user_id'];
-
         if ($userid == "".USERID.""){
         $edit = "
         <form  method='POST' action='Event_UserEdit_Request.php?det.".$event."'>
@@ -143,19 +145,10 @@ $text .= "</table>";
 
        $text .= "</table>";
 
+if ($maxmembers > $n){
+$text .= "<br><center>[<a href='".e_PLUGIN."aacgc_event_listing/Join_Event.php?det.".$row['event_id']."'> Join Event </a>]";}
+
     
-
-
-$text .= "<br>   
-          <center>
-          [<a href='".e_PLUGIN."aacgc_event_listing/Join_Event.php?det.".$row['event_id']."'> Join Event </a>]
-          <br><br>
-          [<a href='".e_PLUGIN."aacgc_event_listing/Events.php'> Back To Events List </a>]
-          </center>
-          <br>";
-
-
-     
      
   $ns -> tablerender("Details", $text);
 

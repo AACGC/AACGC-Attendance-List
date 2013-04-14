@@ -30,13 +30,13 @@ if (e_QUERY) {
 
 //-----------------------------------------------------------------------------------------------------------+
 if ($_POST['addusertodb'] == "1") {
-$eventid = $_POST['event_id'];
-$uid = $_POST['user_id'];
+$eventid = $tp->toDB($_POST['event_id']);
+$uid = $tp->toDB($_POST['user_id']);
 $sql->db_Select("user", "*", "WHERE user_id = '".$uid."'","");
 while($row = $sql->db_Fetch())
 {$usern2 = $row[user_name];}
-$userchoice =  $_POST['user_choice'];
-$userinfo =  $_POST['user_info'];
+$userchoice =  $tp->toDB($_POST['user_choice']);
+$userinfo = $tp->toDB( $_POST['user_info']);
 
 
 $sql->db_Insert("aacgc_event_listing_members", "NULL, '".$eventid."', '".$uid."', '".$userchoice."', '".$userinfo."'");
